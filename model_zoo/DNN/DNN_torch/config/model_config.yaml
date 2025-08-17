@@ -1,0 +1,199 @@
+DNN_taylor_frappe:
+#    batch_norm: true
+    batch_size: 10000
+    dataset_id: frappe_x1
+    embedding_dim: 1
+    embedding_regularizer: 0.05
+    epochs: 100
+    every_x_epochs: 1
+    hidden_activations: relu
+    hidden_units: [400, 400, 400]
+    learning_rate: 0.001
+    loss: binary_crossentropy
+    metrics: [AUC, logloss]
+    model: DNN
+    monitor: AUC
+    monitor_mode: max
+    net_dropout: 0.2
+    net_regularizer: 0
+    num_workers: 3
+    optimizer: adam
+    patience: 2
+    pickle_feature_encoder: true
+    save_best_only: true
+    seed: 20242025
+    shuffle: true
+    task: binary_classification
+    use_hdf5: true
+    verbose: 1
+    force_pretrain: True
+    method: 'tayfcs'
+    mode: 'weight'
+
+DNN_re_frappe:
+#    batch_norm: true
+    batch_size: 10000
+    dataset_id: frappe_x1
+#    debug: false
+    embedding_dim: 16
+    embedding_regularizer: 0 #.05
+    weight_decay: 5.0e-4
+    epochs: 100
+    every_x_epochs: 1
+    hidden_activations: relu
+    hidden_units: [400, 400, 400]
+    learning_rate: 0.001
+    loss: binary_crossentropy
+    metrics: [AUC, logloss]
+    model: DNN
+    monitor: {'AUC': 1, 'logloss': -1}
+    monitor_mode: max
+    net_dropout: 0.2
+    net_regularizer: 0
+    num_workers: 3
+    optimizer: adam
+    patience: 2
+    pickle_feature_encoder: true
+    save_best_only: true
+    seed: 20242025
+    shuffle: true
+    task: binary_classification
+    use_hdf5: true
+    verbose: 1
+    method: 'tayfcs'
+    mode: 'normal'
+    paths: # automating redirect to the correct path
+        score_path: 2
+        ele_path: 3
+
+DNN_taylor_ipinyou:
+    batch_norm: false
+    batch_size: 10000
+    dataset_id: ipinyou_x2
+    debug: false
+    embedding_dim: 1
+    embedding_dropout: 0
+    embedding_regularizer: 1.0e-03
+    epochs: 100
+    every_x_epochs: 1
+    hidden_activations: relu
+    hidden_units: [400, 400, 400]
+    learning_rate: 0.001
+    loss: binary_crossentropy
+    metrics: [logloss, AUC]
+    model: DNN
+    monitor: {AUC: 1, logloss: -1}
+    monitor_mode: max
+    net_dropout: 0.2
+    net_regularizer: 0
+    optimizer: adam
+    patience: 2
+    pickle_feature_encoder: true
+    save_best_only: true
+    seed: 20242025
+    shuffle: true
+    task: binary_classification
+    use_hdf5: true
+    verbose: 1
+    workers: 3
+    method: 'tayfcs'
+    mode: 'weight'
+
+DNN_re_ipinyou: # This is a config template
+    model: DNN
+    dataset_id: ipinyou_x2
+    loss: 'binary_crossentropy'
+    metrics: ['logloss', 'AUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.e-3
+    embedding_regularizer: 1.0e-03
+    net_regularizer: 0
+#    weight_decay: 1.0e-8
+    batch_size: 10000
+    embedding_dim: 16
+    hidden_units: [400, 400, 400]
+    hidden_activations: relu
+    net_dropout: 0
+    batch_norm: False
+    epochs: 100
+    shuffle: True
+    seed: 20242025
+    monitor: {'AUC': 1, 'logloss': -1}
+    monitor_mode: 'max'
+    method: 'tayfcs'
+#    mode: 'lre_hash'
+    mode: 'random'
+#    mode: 'normal'
+    paths: # automating redirect to the correct path
+        score_path: ""
+        ele_path: 2
+
+DNN_taylor_avazu:
+    batch_norm: false
+    batch_size: 10000
+    dataset_id: avazu_x6
+    debug: false
+    embedding_dim: 1
+    embedding_dropout: 0
+    embedding_regularizer: 0
+    epochs: 100
+    every_x_epochs: 1
+    hidden_activations: relu
+    hidden_units: [1000, 1000]
+    learning_rate: 0.001
+    loss: binary_crossentropy
+    metrics: [ logloss, AUC ]
+    model: DNN
+    monitor: { AUC: 1, logloss: -1 }
+    monitor_mode: max
+    net_dropout: 0
+    net_regularizer: 0
+    optimizer: adam
+    patience: 2
+    pickle_feature_encoder: true
+    save_best_only: true
+    seed: 20242025
+    shuffle: true
+    task: binary_classification
+    use_hdf5: true
+    verbose: 1
+    workers: 3
+    method: 'tayfcs'
+    mode: 'weight'
+
+DNN_re_avazu:
+    batch_norm: false
+    batch_size: 10000
+    dataset_id: avazu_x6
+    debug: false
+    embedding_dim: 16
+    embedding_dropout: 0
+    embedding_regularizer: 0
+    epochs: 100
+    every_x_epochs: 1
+    hidden_activations: relu
+    hidden_units: [1000, 1000]
+    learning_rate: 0.001
+    loss: binary_crossentropy
+    metrics: [ logloss, AUC ]
+    model: DNN
+    monitor: { AUC: 1, logloss: -1 }
+    monitor_mode: max
+    net_dropout: 0
+    net_regularizer: 0
+    optimizer: adam
+    patience: 2
+    pickle_feature_encoder: true
+    save_best_only: true
+    seed: 20242025
+    shuffle: true
+    task: binary_classification
+    use_hdf5: true
+    verbose: 1
+    workers: 3
+    method: 'tayfcs'
+    mode: 'lre_hash'
+    paths: # automating redirect to the correct path
+        score_path: ""
+        ele_path: 2

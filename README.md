@@ -8,26 +8,48 @@ Clone the [FuxiCTR](https://github.com/reczoo/FuxiCTR) repository to your local 
 git clone https://github.com/reczoo/FuxiCTR.git
 ```
 
-Then, copy the code from our repository into the `FuxiCTR/model_zoo/` directory.
+Then, copy the code from our repository into the `FuxiCTR/fuxictr/` and `FuxiCTR/model_zoo/` directories.
 
 ## Dataset Preparation
-For Frappe and Avazu (We use the Avazu_x4_**002** version， 在我们的配置文件中称为avazu_x6), you can directly download them from [FuxiCTR-Datasets](https://github.com/reczoo/Datasets/tree/main). Detailed download and configuration instructions are provided there.
+For Frappe and Avazu (We use the Avazu_x4_**002** version, referred to as avazu_x6 in our configuration files), you can directly download them from [FuxiCTR-Datasets](https://github.com/reczoo/Datasets/tree/main). Detailed download and configuration instructions are provided there.
 
 For the iPinYou dataset, the original dataset processing treated the test set as the validation set, which we believe is not very reasonable. Therefore, we additionally split a portion of the training set as the test set. The specific code is as follows:
 
 
 For the above four datasets, please place the downloaded data in the `FuxiCTR/data` folder. You can refer to the corresponding dataset folder names in the `FuxiCTR/model_zoo/DNN/DNN_torch/config/dataset_config.yaml` file.
 
-## Pretraining the Models
+
+## TayScorer (Example based on DNN)
+First, execute
+```
+cd model_zoo/DNN/DNN_torch
+python run_expid_tayscorer.py --expid DNN_taylor_[frappe/ipinyou/avazu] --gpu 0
+```
+This will generate the feature combinations importance list.
+
+The procedure for using Wide & Deep and DeepFM is exactly the same, so it will not be repeated here.
 
 
-## TayScorer
-
-
-## RFE
+## LRE
+Based on the obtained list, use Logistic regression for redundancy elimination.
+```
+cd model_zoo/LR
+python run_redundancy_eliminator.py --expid LR_ipinyou --gpu 0
+```
 
 
 ## Retraining with Feature Combinations
+After placing the importance list and the LRE results in the specified folder, to retrain the base model (e.g., DNN), use:
+```
+cd model_zoo/DNN/DNN_torch
+python run_expid_incre.py --expid DNN_re_[frappe/ipinyou/avazu] --gpu 0 --com_num [10]
+```
+For transfer learning (e.g., MaskNet), use:
+```
+cd model_zoo/MaskNet
+python run_expid_incre.py --expid MaskNet_re_[frappe/ipinyou/avazu] --gpu 0 --com_num [10]
+```
+
 
 ### Contact Us & Acknowledgments
 If you have any questions, feel free to contact Xianquan Wang (email: wxqcn@mail.ustc.edu.cn).
