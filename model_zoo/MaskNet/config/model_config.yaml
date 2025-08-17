@@ -1,0 +1,102 @@
+MaskNet_re_frappe:
+    model: MaskNet
+    dataset_id: frappe_x1
+    loss: 'binary_crossentropy'
+    metrics: ['logloss', 'AUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.e-3
+    embedding_regularizer: 0 #0.1
+    weight_decay: 5.0e-4
+    net_regularizer: 0
+    batch_size: 10000
+    embedding_dim: 16
+    dnn_hidden_units: [400, 400, 400]
+    dnn_hidden_activations: relu
+    model_type: ParallelMaskNet
+    parallel_num_blocks: 3
+    parallel_block_dim: 50
+    reduction_ratio: 2
+    emb_layernorm: false
+    net_layernorm: True
+    net_dropout: 0
+    epochs: 100
+    shuffle: True
+    seed: 20242025
+    monitor: {AUC: 1, logloss: -1}
+    monitor_mode: 'max'
+    patience: 2
+    pickle_feature_encoder: true
+    save_best_only: true
+    use_hdf5: true
+    verbose: 1
+    method: 'tayfs'
+    mode: 'lre_hash'
+    paths: # automating redirect to the correct path
+        score_path: 2
+        ele_path: 3
+
+MaskNet_re_avazu:
+    model: MaskNet
+    dataset_id: avazu_x6
+    loss: 'binary_crossentropy'
+    metrics: ['logloss', 'AUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.e-3
+    embedding_regularizer: 0 #0.1
+#    weight_decay: 5.0e-4
+    net_regularizer: 0
+    batch_size: 10000
+    embedding_dim: 16
+    dnn_hidden_units: [400, 400, 400]
+    dnn_hidden_activations: relu
+    model_type: ParallelMaskNet
+    parallel_num_blocks: 3
+    parallel_block_dim: 50
+    reduction_ratio: 2
+    emb_layernorm: false
+    net_layernorm: True
+    net_dropout: 0
+    epochs: 100
+    shuffle: True
+    seed: 20242025
+    monitor: {AUC: 1, logloss: -1}
+    monitor_mode: 'max'
+    patience: 2
+    pickle_feature_encoder: true
+    save_best_only: true
+    use_hdf5: true
+    verbose: 1
+    method: 'tayfs'
+    mode: 'lre_hash'
+    paths: # automating redirect to the correct path
+        score_path: ""
+        ele_path: 2
+
+MaskNet_re_ipinyou:
+    model: MaskNet
+    dataset_id: ipinyou_x1
+    loss: 'binary_crossentropy'
+    metrics: ['logloss', 'AUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.e-3
+    embedding_regularizer: 0
+    net_regularizer: 0
+    batch_size: 8192
+    embedding_dim: 10
+    dnn_hidden_units: [400, 400, 400]
+    dnn_hidden_activations: relu
+    model_type: SerialMaskNet
+    parallel_num_blocks: 1
+    parallel_block_dim: 64
+    reduction_ratio: 1
+    emb_layernorm: True
+    net_layernorm: True
+    net_dropout: 0
+    epochs: 10
+    shuffle: True
+    seed: 20242025
+    monitor: 'AUC'
+    monitor_mode: 'max'

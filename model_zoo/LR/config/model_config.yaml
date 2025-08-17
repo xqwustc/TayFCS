@@ -1,0 +1,62 @@
+LR_frappe:
+    model: LR
+    dataset_id: frappe_x1
+    loss: binary_crossentropy
+    metrics: ['logloss', 'AUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    regularizer: 0
+    batch_size: 10000
+    epochs: 10
+    shuffle: True
+    seed: 20242025
+    monitor: {'AUC': 1, 'logloss': -1}
+    monitor_mode: 'max'
+    method: 'tayfcs'
+    mode: 'normal_hash'
+    force_pretrain: True
+    paths:
+        score_path: '/FuxiCTR/model_zoo/DNN/DNN_torch/checkpoints/frappe_x1/combine_score.csv'
+
+LR_ipinyou:
+    model: LR
+    dataset_id: ipinyou_x2
+    loss: binary_crossentropy
+    metrics: ['logloss', 'AUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    regularizer: 0
+    batch_size: 10000
+    epochs: 10
+    shuffle: True
+    seed: 20242025
+    monitor: {'AUC': 1, 'logloss': -1}
+    monitor_mode: 'max'
+    method: 'tayfcs'
+    mode: 'normal_hash'
+    force_pretrain: True
+    paths:
+        score_path: '/FuxiCTR/model_zoo/DNN/DNN_torch/checkpoints/ipinyou_x2/combine_score.csv'
+
+LR_avazu:
+    model: LR
+    dataset_id: avazu_x6
+    loss: binary_crossentropy
+    metrics: ['logloss', 'AUC']
+    task: binary_classification
+    optimizer: adam
+    learning_rate: 1.0e-3
+    regularizer: 0
+    batch_size: 10000
+    epochs: 100
+    shuffle: True
+    seed: 20242025
+    monitor: {'AUC': 1, 'logloss': -1}
+    monitor_mode: 'max'
+    method: 'tayfcs'
+    mode: 'normal_hash'
+    force_pretrain: True
+    paths:
+        score_path: '/FuxiCTR/model_zoo/DNN/DNN_torch/checkpoints/avazu_x6/combine_score.csv'
