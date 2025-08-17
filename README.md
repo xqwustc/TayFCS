@@ -34,7 +34,7 @@ The procedure for using Wide & Deep and DeepFM is exactly the same, so it will n
 Based on the obtained list, use Logistic regression for redundancy elimination.
 ```
 cd model_zoo/LR
-python run_redundancy_eliminator.py --expid LR_ipinyou --gpu 0
+python run_redundancy_eliminator.py --expid LR_avazu --gpu 0
 ```
 
 
