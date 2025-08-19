@@ -13,7 +13,9 @@ Then, copy the code from our repository into the `FuxiCTR/fuxictr/` and `FuxiCTR
 ## Dataset Preparation
 For Frappe and Avazu (We use the Avazu_x4_**002** version, referred to as avazu_x6 in our configuration files), you can directly download them from [FuxiCTR-Datasets](https://github.com/reczoo/Datasets/tree/main). Detailed download and configuration instructions are provided there.
 
-For the iPinYou dataset, the original dataset processing treated the test set as the validation set, which we believe is not very reasonable. Therefore, we additionally split a portion of the training set as the test set. The specific code is as follows:
+For the iPinYou dataset, the original dataset processing treated the test set as the validation set, which we believe is not very reasonable. Therefore, we additionally split a portion of the training set as the test set. The specific code is located at `FuxiCTR/data/ipinyou_process.py`. 
+Before using it, rename the downloaded iPinYou dataset's `train.csv` to `train_old.csv`, and then run the Python file.
+
 
 
 For the above four datasets, please place the downloaded data in the `FuxiCTR/data` folder. You can refer to the corresponding dataset folder names in the `FuxiCTR/model_zoo/DNN/DNN_torch/config/dataset_config.yaml` file.
