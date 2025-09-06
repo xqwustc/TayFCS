@@ -27,6 +27,7 @@ First, execute
 cd model_zoo/DNN/DNN_torch
 python run_expid_tayscorer.py --expid DNN_taylor_[frappe/ipinyou/avazu] --gpu 0
 ```
+For example, if you want to run the experiment on the `Avazu` dataset, set the `expid` to `DNN_taylor_avazu` (the same applies below).
 This will generate the feature combinations importance list.
 
 The procedure for using Wide & Deep and DeepFM is exactly the same, so it will not be repeated here.
@@ -36,7 +37,7 @@ The procedure for using Wide & Deep and DeepFM is exactly the same, so it will n
 Based on the obtained list, use Logistic regression for redundancy elimination.
 ```
 cd model_zoo/LR
-python run_redundancy_eliminator.py --expid LR_avazu --gpu 0
+python run_redundancy_eliminator.py --expid LR_[frappe/ipinyou/avazu] --gpu 0
 ```
 
 
