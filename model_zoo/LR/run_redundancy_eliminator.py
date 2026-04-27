@@ -84,7 +84,7 @@ if __name__ == '__main__':
         topk_model = model_class(topk_feature_map, **topk_params)
         topk_model.count_parameters()  # print number of parameters used in model
 
-        train_gen,valid_gen,test_gen = H5DataLoader(topk_feature_map, stage='both', **topk_params).make_iterator()
+        train_gen, valid_gen = H5DataLoader(topk_feature_map, stage='train', **topk_params).make_iterator()
 
         if params.get('force_pretrain', False):
             topk_model.fit(train_gen, validation_data=valid_gen, **params)
@@ -102,5 +102,5 @@ if __name__ == '__main__':
         logging.info('****** Validation with PFI *******')
         topk_model.evaluate_with_pfi(valid_gen, valid_result)
 
-        del train_gen, valid_gen, test_gen
+        del train_gen, valid_gen
         gc.collect()
