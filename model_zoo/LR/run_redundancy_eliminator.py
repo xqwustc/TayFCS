@@ -92,7 +92,7 @@ if __name__ == '__main__':
             topk_model.load_weights(topk_model.checkpoint)
 
 
-        valid_result = topk_model.evaluate(test_gen)
+        valid_result = topk_model.evaluate(valid_gen)
 
         topk_column_name.append('with {} combinations'.format(i, topk_params['use_features']))
         topk_logloss_result.append(valid_result['logloss'])
